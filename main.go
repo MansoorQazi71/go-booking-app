@@ -9,6 +9,7 @@ func main() {
 	var userTickets uint
 	var email string
 	var remainingTickets uint = 50
+	var bookings []string
 
 	fmt.Println("Welcome to ", conferenceName, "booking application")
 	fmt.Println("please enter your first name:")
@@ -19,6 +20,8 @@ func main() {
 	fmt.Scan(&userTickets)
 	fmt.Println("Please enter your email address:")
 	fmt.Scan(&email)
+	bookings = append(bookings, firstName+" "+lastName)
+	fmt.Printf("booking details: %v\n", bookings)
 	fmt.Println("Thank you", firstName, lastName, "for booking", userTickets, "tickets for", conferenceName)
 	fmt.Printf("You will receive a confirmation email on %v at the end of the booking process.\n", email)
 	remainingTickets = remainingTickets - userTickets
