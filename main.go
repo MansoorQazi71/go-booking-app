@@ -24,6 +24,11 @@ func main() {
 		fmt.Scan(&email)
 		fmt.Println("please enter number of tickets you want to book:")
 		fmt.Scan(&userTickets)
+
+		isValidName := len(firstName) >= 2 && len(lastName) >= 2
+		isValidEmail := strings.Contains(email, "@") && strings.Contains(email, ".")
+		isValidTicketNumber := userTickets > 0 && userTickets <= remainingTickets
+
 		if userTickets <= remainingTickets {
 			bookings = append(bookings, firstName+" "+lastName)
 			firstNames := []string{}
