@@ -29,7 +29,7 @@ func main() {
 		isValidEmail := strings.Contains(email, "@") && strings.Contains(email, ".")
 		isValidTicketNumber := userTickets > 0 && userTickets <= remainingTickets
 
-		if userTickets <= remainingTickets {
+		if isValidEmail && isValidName && isValidTicketNumber {
 			bookings = append(bookings, firstName+" "+lastName)
 			firstNames := []string{}
 			for _, booking := range bookings {
