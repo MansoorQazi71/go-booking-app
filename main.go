@@ -11,6 +11,7 @@ func main() {
 	var lastName string
 	var userTickets uint
 	var email string
+	var city string
 	var remainingTickets uint = 50
 	var bookings []string
 
@@ -24,12 +25,15 @@ func main() {
 		fmt.Scan(&email)
 		fmt.Println("please enter number of tickets you want to book:")
 		fmt.Scan(&userTickets)
+		fmt.Println("please enter city")
+		fmt.Scan(&city)
 
 		isValidName := len(firstName) >= 2 && len(lastName) >= 2
 		isValidEmail := strings.Contains(email, "@") && strings.Contains(email, ".")
 		isValidTicketNumber := userTickets > 0 && userTickets <= remainingTickets
+		isValidCity := city == "Singapore" || city == "London"
 
-		if isValidEmail && isValidName && isValidTicketNumber {
+		if isValidEmail && isValidName && isValidTicketNumber && isValidCity {
 			bookings = append(bookings, firstName+" "+lastName)
 			firstNames := []string{}
 			for _, booking := range bookings {
@@ -46,7 +50,19 @@ func main() {
 			remainingTickets = remainingTickets - userTickets
 			fmt.Printf("Remaining tickets for %v are %v\n", conferenceName, remainingTickets)
 		} else {
-			fmt.Printf("Sorry, we only have %v tickets remaining for %v\n", remainingTickets, conferenceName)
+			if !isValidName {
+				fmt.Println("First name and last name must be at least 2 characters long.")
+			}
+			if !isValidEmail {
+				fmt.Println("Email address is not valid. Please enter a valid email address.")
+			}
+			if !isValidTicketNumber {
+				fmt.Println("Number of tickets must be greater than 0 and less than or equal to remaining tickets.")
+			}
+			if !isValidCity {
+				fmt.Println("City must be either Singapore or London.")
+			}
+			// fmt.Printf("Sorry, we only have %v tickets remaining for %v\n", remainingTickets, conferenceName)
 		}
 	}
 
