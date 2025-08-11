@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"go-booking-app/helper"
 	"strings"
 )
 
@@ -15,7 +16,7 @@ func main() {
 
 	for remainingTickets > 0 && len(bookings) < 50 {
 		firstName, lastName, email, userTickets, city := userInput()
-		isValidName, isValidEmail, isValidTicketNumber, isValidCity := validateInput(firstName, lastName, email, userTickets, remainingTickets, city)
+		isValidName, isValidEmail, isValidTicketNumber, isValidCity := helper.ValidateInput(firstName, lastName, email, userTickets, remainingTickets, city)
 
 		if isValidEmail && isValidName && isValidTicketNumber && isValidCity {
 			bookTicket(firstName, lastName, email, userTickets)
@@ -55,15 +56,6 @@ func getNames() []string {
 		firstNames = append(firstNames, names[0])
 	}
 	return firstNames
-}
-
-func validateInput(firstName, lastName, email string, userTickets uint, remainingTickets uint, city string) (bool, bool, bool, bool) {
-	isValidName := len(firstName) >= 2 && len(lastName) >= 2
-	isValidEmail := strings.Contains(email, "@") && strings.Contains(email, ".")
-	isValidTicketNumber := userTickets > 0 && userTickets <= remainingTickets
-	isValidCity := city == "Singapore" || city == "London" || city == "singapore" || city == "london"
-
-	return isValidName, isValidEmail, isValidTicketNumber, isValidCity
 }
 
 func userInput() (string, string, string, uint, string) {
