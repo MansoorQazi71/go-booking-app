@@ -1,8 +1,8 @@
-package helper
+package main
 
 import "strings"
 
-func ValidateInput(firstName, lastName, email string, userTickets uint, remainingTickets uint, city string) (bool, bool, bool, bool) {
+func validateInput(firstName, lastName, email string, userTickets uint, remainingTickets uint, city string) (bool, bool, bool, bool) {
 	isValidName := len(firstName) >= 2 && len(lastName) >= 2
 	isValidEmail := strings.Contains(email, "@") && strings.Contains(email, ".")
 	isValidTicketNumber := userTickets > 0 && userTickets <= remainingTickets
